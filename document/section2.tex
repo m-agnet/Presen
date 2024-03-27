@@ -1,0 +1,163 @@
+\section{実験の設定}\label{sec:simulation}
+
+この章では, 行ったシミュレーションの設定についてそれぞれ説明をしていく.
+
+系の上下両端のポテンシャルエネルギー差$mgL_y$と運動エネルギー差$k_{\text{B}}\Delta T$の比を$\chi$として以下のように設定する.
+
+\begin{align}
+  \chi &\equiv \frac{k_{\text{B}}\Delta T}{mgL_{y}}
+\end{align}
+
+壁ポテンシャルまわりの無次元パラメータを3つ用意する.
+
+\begin{align}
+  \text{R}_\text{d} &: 乾き具合. \\
+  \text{R}_\text{t} &: 壁の厚み. \\
+  \text{R}_\text{a} &: 引力幅.
+\end{align}
+
+これらを用いて, 壁-粒子間相互作用LJポテンシャルは以下のように書き表す.
+
+\begin{align}
+  \varepsilon^{\text{wall}} &= \qty(1.0 - \text{R}_\text{d}) \times \varepsilon \\
+  \sigma^{\text{wall}} &= \qty(0.5 + \text{R}_\text{t}) \times \sigma \\
+  r^{\text{wall}}_{\text{cut}} &= \qty(2^{1/6} + \text{R}_\text{a}) \times \sigma^{\text{wall}}
+\end{align}
+
+パラメータ $(\text{R}_\text{d}, \text{R}_\text{t}, \text{R}_\text{a})$ を変えることによって, 壁-粒子間相互作用LJポテンシャルが変わる. このときに, どのようにして粒子集団の様相が変化するかをみる.
+
+$\text{R}_\text{a}$ と $\text{R}_\text{t}$ を少しずつ変えた系でシミュレーションをして, 粒子集団の様相の変化を見たい. 以下に示すのが, それらを動かす範囲である.
+
+\begin{align}
+  \text{R}_\text{a} &\colon 0.0 \sim 3.0 - 2^{1/6} = 1.877538\dots \\
+  \text{R}_\text{t} &\colon 0.0 \sim 0.5
+\end{align}
+
+\input{subtex/RaRtmap_LJ.tex}
+
+本章の以降の実験は特記がない限り以下のパラメータに近い値で行うものとする. 
+
+\begin{itemize}
+  \item $N = 1250$: 粒子数
+  \item $\rho {\sigma}^2 = 0.4$: 粒子数密度
+  \item $L_x / \sigma = 39.528471 \simeq 39.5$: 系の$x$幅
+  \item $L_y / \sigma = 79.0569414 \simeq 79.0$: 系の$y$幅
+  \item $k_{\text{B}} T / \varepsilon = 0.43$: 初期温度
+  \item $k_{\text{B}} \Delta T / \varepsilon = 0.04$: 熱浴の温度差
+  \item $mg\sigma/\varepsilon = 0.0003999718779659611 \simeq 4.0 \times 10^{-4}$: 粒子にかかる重力の大きさ
+  \item $\dd t \sqrt{\epsilon/m{\sigma}^2} = 0.005$: シミュレーションにおける時間刻み.
+\end{itemize}
+
+
+以下に記すのは, 今後解析をする際に示すシミュレーションについての時間に関する説明である.
+
+\begin{align}
+  t_i &\colon シミュレーション開始時から, 物理量を解析する際にデータを採用し始める時間. これ以降は定常状態であるとみなす. \\
+  t_f & \colon シミュレーション開始時から, シミュレーションの終了時までの時間.
+\end{align}
+
+いずれの実験の場合も$t\sqrt{\epsilon/m{\sigma}^2}=0$の時点では粒子は以下の画像のように, 系に規則正しく並べられているとする.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.2]{image/initial1250.png}
+  \caption{$N=1250$}
+  \label{}
+\end{figure}
+
+\subsection{追実験}
+
+壁を完全に濡らしている状態を考えたいので, $r^{\text{wall}}_{\text{cut}}=3.0\sigma$ に設定する.
+
+また, 重力をかけた状態で粒子が下に落ちきり, 定常状態にあるとみなせるまでシミュレーションを行ってから, 熱流をかけている.
+
+\begin{itemize}
+  \item $N = 5000$
+  \item $\rho \sigma^2 = 0.4$
+  \item $L_x / \sigma = 79.0\dots$
+  \item $L_y / \sigma = 158.1\dots$
+  \item $k_{\text{B}} T/\varepsilon = 0.43$
+  \item $k_{\text{B}} \Delta T/\varepsilon = 0.0$
+  \item $mg\sigma/\varepsilon = 2.0 \times 10^{-4}$
+  \item ${t_f}^{\prime} \sqrt{\varepsilon / m \sigma^2} = 5.0 \times 10^{5}$
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.2]{image/drop5000.png}
+  \caption{$t \sqrt{\varepsilon / m \sigma^2} = 5.0 \times 10^{5}$でのスナップショット}
+  \label{}
+\end{figure}
+
+続いて重力をかけた緩和後の系で, 熱浴の温度差を改めて以下のようにつけ, 熱流をかけてシミュレーションをしている. 
+
+\begin{itemize}
+  \item $\chi = k_{\text{B}}\Delta T / mg L_y = 1.265$
+  \item $k_{\text{B}} \Delta T/\varepsilon = 0.04$
+  \item $t_i \sqrt{\varepsilon / m \sigma^2} = 5.0 \times 10^{5}$
+  \item $t_f \sqrt{\varepsilon / m \sigma^2} = 1.0 \times 10^{6}$
+\end{itemize}
+
+$(\text{R}_\text{d} = 0.0, \text{R}_\text{t} = 0.5, \text{R}_\text{a} = 3.0 - 2^{1/6})$ で実験を行う. このとき, $(\varepsilon^{\text{wall}} = \varepsilon, \sigma^{\text{wall}} = \sigma, r^{\text{wall}}_{\text{cut}} = 3.0 \sigma^{\text{wall}})$ になるので, ${\phi_{\text{LJ}}^{\text{wall}}} = \phi_{\text{LJ}}$ ということになり, 先行研究と同じシミュレーションを行うことができる.
+
+\begin{figure}[H]
+  \centering
+  \href{https://youtu.be/CIEyUPvPY6A}{\includegraphics[scale=0.2]{image/2023-11-21T21:01:17.543_followup_chi1.265_Ay100_rho0.4_T0.43_dT0.04_Rd0.0_Rt0.5_Ra1.877538_g0.00019998593898298055_run1.0e8_output.png}}
+  \caption{Ay100\_rho0.4\_T0.43\_dT0.04\_Rd0.0\_Rt0.5\_Ra1.877538\_g0.0004\_run1.0e8}
+  \label{}
+\end{figure}
+
+\subsection{濡れ性を変化させる}
+
+以下のように, $\text{R}_\text{a}$と$\text{R}_\text{t}$を少しずつ変えた系を設定して, それぞれシミュレーションをした.
+
+\vspace{1\baselineskip}
+
+\begin{tabular}{|c|c|c|c|c|c|} \hline
+        & $\text{R}_\text{a}:0.0$ & $\text{R}_\text{a}:0.469$ & $\text{R}_\text{a}:0.938$ & $\text{R}_\text{a}:1.408$ & $\text{R}_\text{a}:1.877$ \\ \hline
+  $\text{R}_\text{t}:0.0$ & a      & b      & c      & d      & e     \\ \hline
+  $\text{R}_\text{t}:0.125$ & f      & g      & h      & i      & j     \\ \hline
+  $\text{R}_\text{t}:0.25$ & k      & l      & m      & n      & o     \\ \hline
+  $\text{R}_\text{t}:0.375$ & p      & q      & r      & s      & t     \\ \hline
+  $\text{R}_\text{t}:0.5$ & u      & v      & w      & x      & y     \\ \hline
+\end{tabular}
+
+\vspace{1\baselineskip}
+
+参考のために,
+
+\begin{align}
+  \text{R}_\text{a} &= 0.0 \Rightarrow r_{\text{cut}}^{\text{wall}} = 2^{1/6} \sigma_{\text{wall}} \\
+  \text{R}_\text{a} &= 1.877\dots \Rightarrow r_{\text{cut}}^{\text{wall}} = 3.0 \sigma_{\text{wall}} \\
+  \text{R}_\text{t} &= 0.0 \Rightarrow \sigma_{\text{wall}} = 0.5 \sigma \\
+  \text{R}_\text{t} &= 0.5 \Rightarrow \sigma_{\text{wall}} = \sigma 
+\end{align}
+
+である. 
+
+パラメータを確認する.
+
+\begin{itemize}
+  \item $N = 1250$
+  \item $\rho {\sigma}^2 = 0.4$
+  \item $L_x / \sigma = 39.5\dots$
+  \item $L_y / \sigma = 79.0\dots$
+  \item $k_{\text{B}} T / \varepsilon = 0.43$
+  \item $k_{\text{B}} \Delta T / \varepsilon = 0.04$
+  \item $mg\sigma/\varepsilon = 4.0 \times 10^{-4}$
+  \item $t_f \sqrt{\varepsilon / m \sigma^2} = 2.0 \times 10^{5}$
+\end{itemize}
+
+この際の粒子集団の様相は以下のようになる.
+
+\input{subtex/RaRtmap_movie.tex}
+
+重心位置$Y_g$を系の$y$幅でスケーリングして, 時系列プロットすると,
+
+\begin{align}
+  Y_g &\equiv \bar{y_i} = \frac{1}{N} \sum_{i}^{N} y_i
+\end{align}
+
+\input{subtex/RaRtmap_time.tex}
+
+

@@ -1,0 +1,65 @@
+% 枠
+\usepackage{fancybox}
+\usepackage{ascmac}
+% 色
+\usepackage{color}
+% 数式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{bm,physics}
+\usepackage{siunitx}
+\usepackage[thicklines]{cancel}
+% 画像
+\usepackage[dvipdfmx]{graphicx} % 画像出力をする.
+% \usepackage[draft]{graphicx} % 画像出力を枠だけにする.
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage{here}
+\usepackage{wrapfig} % rin; 変更点: 文字の回り込み用のパッケージ.
+% グラフ
+\usepackage{tikz}
+\usetikzlibrary{
+  intersections,
+  calc,
+  arrows.meta
+}
+% ソースコード
+\usepackage{listings,jlisting}
+\lstset{
+  language=C++,
+	stringstyle={\ttfamily},
+	commentstyle={\ttfamily},
+	basicstyle={\ttfamily},
+	columns=fixed,
+  frame={tb},
+  breaklines=true,
+  columns=[l]{fullflexible},
+	backgroundcolor=\color[gray]{.90}, % pdfをコピペしたときに行番号を巻き込まないようにする.
+  numbers=left, % 行数を表示したければonにする.
+  xrightmargin=0em,
+  xleftmargin=3em,
+  numberstyle={\scriptsize},
+  stepnumber=1,
+  numbersep=1em,
+	tabsize=2,
+  lineskip=-0.5ex
+}
+% アンカー
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\hypersetup{
+  setpagesize=false,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=red,
+  urlcolor=magenta
+}
+% 数式相互参照
+\usepackage{cleveref}
+\usepackage{autonum}
+\numberwithin{equation}{subsection}
+% 目次に参考文献を入れる. これをonにすると目次の体裁が崩れてしまう.
+% \usepackage{tocbibind}

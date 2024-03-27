@@ -1,0 +1,112 @@
+\section{分析}
+
+この章では, \ref{sec:simulation}章において行ったシミュレーションに対して, それぞれ分析をしていく.
+
+\subsection{$\text{R}_\text{a}$, $\text{R}_\text{t}$ マップ}
+
+
+ここで, 重心の標準偏差は以下のように書くことができる.
+
+\begin{align}
+  \sigma (Y_g) &= \sqrt{\frac{1}{N_{D}}\sum_{t=t_i}^{t=t_f} (Y_{g}(t) - \bar{Y_g})^2}
+\end{align}
+
+重心位置の標準偏差について同時プロットで表してみる. 以降の解析は図\ref{fig:RaRtmap_time_Ra0.0_Rt0.0}から定常状態にあるとみなせる, $t_i \sqrt{\varepsilon / m \sigma^2} = 2.5 \times 10^{4}$からのデータを用いてプロットすることにしている.
+
+\begin{figure}[H]
+  \begin{tabular}{cc}
+    \begin{minipage}[t]{0.5\hsize}
+      \centering
+      \includegraphics[width=\textwidth]{image/lnStdYg_Ra0.0to1.877538_Rt0.0to0.5_ti25000.png}
+      \subcaption{}
+      \label{}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\hsize}
+      \centering
+      \includegraphics[width=\textwidth]{image/lnStdYg_Rt0.0to0.5_Ra0.0to1.877538_ti25000.png}
+      \subcaption{}
+      \label{}
+    \end{minipage}
+  \end{tabular}
+  \caption{$t_i \sqrt{\varepsilon / m \sigma^2} = 2.5 \times 10^{4}$}
+  \label{}
+\end{figure}
+
+% \subsection{周期性}
+
+% 重心位置が周期的に変化しているのかを調べたい.
+
+% 図\ref{fig:RaRtmap_time_Ra0.469_Rt0.500}$R_a = 0.469, R_t = 0.5$と図\ref{fig:RaRtmap_time_Ra0.938_Rt0.500} $R_a = 0.938, R_t = 0.5$の間をもっと詳しく見る.
+
+% \input{subtex/Ra0.469to0.938Rt0.5_time.tex}
+
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[scale=0.5]{image/lnStdYg_Ra0.4693845to0.98769_Rt0.5_ti25000.png}
+%   \caption{}
+%   \label{}
+% \end{figure}
+
+% \input{subtex/Ra0.762to0.938Rt0.5_time.tex}
+
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[scale=0.5]{image/lnStdYg_Ra0.70407675to0.98769_Rt0.5_ti25000.png}
+%   \caption{}
+%   \label{}
+% \end{figure}
+
+% 図\ref{fig:RaRtmap_time_Ra0.469_Rt0.500}$R_a = 0.469, R_t = 0.5$と図\ref{fig:RaRtmap_time_Ra0.938_Rt0.500} $R_a = 0.938, R_t = 0.5$の間をもっと詳しく見る. その際, 簡単のため, $Ra =0.5 \sim 1.0$の間を見ることにする.
+
+% \input{subtex/Ra0.5to1.0Rt0.5_time.tex}
+
+% \begin{figure}[H]
+%   \centering
+%   \includegraphics[scale=0.5]{image/lnStdYg_Ra0.5to1.0_Rt0.5_ti25000.png}
+%   \caption{}
+%   \label{}
+% \end{figure}
+
+
+\subsection{ヒストグラム}
+
+% \subsubsection{重力と熱流を同時にかける}
+
+図\ref{fig:RaRtmap_time}の結果をそれぞれ正規化したヒストグラムにして表す.
+
+\input{subtex/RaRtmap_hist.tex}
+
+\subsection{空間的な揺らぎ}
+
+粒子集団のばらつき具合, 空間的な揺らぎを時系列で考える.
+
+\begin{align}
+  \sigma_{y} (t)
+  &= \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i (t) - \bar{y_i}(t) )^2} \\
+  &= \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i (t) - Y_g (t) )^2} \\
+  &= \sqrt{\frac{1}{N} \sum_{i=1}^{N} {{y_i} (t)}^2 - {{Y_g} (t)}^2}
+\end{align}
+
+% \subsubsection{重力と熱流を同時にかける}
+
+\input{subtex/RaRtmap_stdy.tex}
+
+
+\subsection{リミットサイクル}
+
+% \subsubsection{重力と熱流を同時にかける}
+
+\input{subtex/RaRtmap_cycle.tex}
+
+\subsection{リミットサイクル3d}
+
+% \subsubsection{重力と熱流を同時にかける}
+
+\input{subtex/RaRtmap_cycle3d.tex}
+
+\subsection{ヒートマップ}
+
+% \subsubsection{重力と熱流を同時にかける}
+
+\input{subtex/RaRtmap_heat.tex}
+

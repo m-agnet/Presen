@@ -1,0 +1,137 @@
+\documentclass[a4paper,11pt]{jsarticle}
+
+
+% 枠
+\usepackage{fancybox}
+\usepackage{ascmac}
+% 色
+\usepackage{color}
+% 数式
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{bm,physics}
+\usepackage{siunitx}
+\usepackage[thicklines]{cancel}
+% 画像
+\usepackage[dvipdfmx]{graphicx} 
+% \usepackage[draft]{graphicx} % 画像出力を枠だけにする.
+\usepackage[hang,small,bf]{caption}
+\usepackage[subrefformat=parens]{subcaption}
+\usepackage{here}
+% ソースコード
+\usepackage{listings,jlisting}
+\lstset{
+language=C++,
+stringstyle={	tfamily},
+commentstyle={	tfamily},
+basicstyle={	tfamily},
+columns=fixed,
+frame={tb},
+breaklines=true,
+columns=[l]{fullflexible},
+backgroundcolor=\color[gray]{.90}, % pdfをコピペしたときに行番号を巻き込まないようにする.
+numbers=left, % 行数を表示したければonにする.
+xrightmargin=0em,
+xleftmargin=3em,
+numberstyle={\scriptsize},
+stepnumber=1,
+numbersep=1em,
+tabsize=2,
+lineskip=-0.5ex
+}
+% アンカー
+\usepackage[dvipdfmx]{hyperref}
+\usepackage{pxjahyper}
+\hypersetup{
+setpagesize=false,
+bookmarksnumbered=true,
+bookmarksopen=true,
+colorlinks=true,
+linkcolor=blue,
+citecolor=red,
+urlcolor=magenta
+}
+% 数式相互参照
+\usepackage{cleveref}
+\usepackage{autonum}
+\numberwithin{equation}{subsection}
+\begin{document}
+
+% \title{}
+% \author{}
+% \date{\today}
+% \maketitle
+% 目次
+% \setcounter{tocdepth}{3}
+% \tableofcontents
+\newpage
+% 本文
+
+\begin{align}
+  \varepsilon^{\text{wall}} &= \varepsilon \\
+  \sigma^{\text{wall}} &= (0.5 + \text{R}_\text{t}) \times \sigma \\
+  r_{\text{cut}}^{\text{wall}} &= (2^{1/6} + \text{R}_\text{a}) \times \sigma^{\text{wall}} \\
+\end{align}
+
+\begin{align}
+  V^{\text{wall}}(y;L_y) &= \tilde{\phi}_{\text{LJ}}(L_y -y; \varepsilon^{\text{wall}}, \sigma^{\text{wall}}, r_{\text{cut}}^{\text{wall}}) + \tilde{\phi}_{\text{LJ}}(y; \varepsilon^{\text{wall}}, \sigma^{\text{wall}}, r_{\text{cut}}^{\text{wall}})  & \\
+  \\
+  \tilde{\phi}_{\text{LJ}}(r; \varepsilon, \sigma, r_{\text{cut}}) &= \qty{ 4\varepsilon \qty[\qty(\frac{\sigma}{r})^{12} - \qty(\frac{\sigma}{r})^{6} ] - 4\varepsilon \qty[\qty(\frac{\sigma}{r_{\text{cut}}})^{12} - \qty(\frac{\sigma}{r_{\text{cut}}})^{6} ] } \theta(r_{\text{cut}} - r)\\
+\end{align}
+
+\begin{itemize}
+  \item $N = 1250$
+  \item $L_y = 80$
+  \item $L_x : L_y = 1:2$
+\end{itemize}
+
+\begin{itemize}
+  \item $T_\text{L} = 0.41$
+  \item $T_\text{H} = 0.45$
+  \item $mg = 4.0 \times 10^{-4}$
+\end{itemize}
+
+\begin{align}
+  \chi &\equiv \frac{k_{\text{B}}(T_\text{H} - T_\text{L})}{mgL_y} \simeq 1
+\end{align}
+
+\begin{align}
+  Y_g &\equiv \frac{1}{N} \sum_{i}^{N} y_i
+\end{align}
+
+$\text{R}_\text{t} = 0.5, \text{R}_\text{a} = 0.4694$
+
+$\text{R}_\text{t} \colon 壁の厚み$
+
+$\text{R}_\text{a} \colon 濡れ具合$
+
+$\text{R}_\text{t} \colon 壁の厚み, \text{R}_\text{a} \colon 引力幅$
+
+\begin{align}
+  \sigma_{y} (t)
+  &= \sqrt{\frac{1}{N} \sum_{i=1}^{N} (y_i (t) - Y_g (t) )^2} 
+\end{align}
+
+\begin{align}
+  0.0 \leq \text{R}_\text{t} \leq 0.5
+\end{align}
+
+\begin{align}
+  0.0 \leq \text{R}_\text{a} \leq 3.0 - 2^{1/6}
+\end{align}
+
+\begin{align}
+  \label{Hamiltonian}
+  H(\Gamma; g)
+  &= \sum_{i=1}^{N}
+  \left[
+    \frac{{\bm{p}_i}^2}{2m} 
+    + \sum_{j > i}^{N}
+      \tilde{\phi}_{\text{LJ}}^{\text{pair}}(r_{ij})
+    + mgy_i
+    \color{red}+ V^{\text{wall}} (y_i)\color{black}
+  \right]
+\end{align}
+
+\end{document}
